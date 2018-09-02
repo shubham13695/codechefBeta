@@ -22,11 +22,11 @@ export class NavBarComponent  {
       scope: 'public',
       redirect_uri: 'http://localhost:4200',
     };
-
-    this.authentication.post(this.appsettings.clientCridential, this.form)
-      .subscribe((data) => {
-      console.log(data);
-    });
+    window.location.href = 'https://api.codechef.com/oauth/authorize?response_type=code&client_id=983f0d084572c13255d514c32564de9f&state=xyz&redirect_uri=http://localhost:4200';
+    // this.authentication.post(this.appsettings.clientCridential, this.form)
+    //   .subscribe((data) => {
+    //   console.log(data);
+    // });
   }
 
 
