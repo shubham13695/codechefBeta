@@ -8,7 +8,6 @@ import { AppSettings } from '../config/app.config';
 import { AppRoutes } from './app.routing';
 
 import { HomeModule } from '../component/home/home.module';
-import { LoginModule } from '../component/login/login.module';
 import { RouterModule } from '@angular/router';
 
 
@@ -21,7 +20,6 @@ import { RouterModule } from '@angular/router';
     HttpModule,
     RouterModule.forRoot(AppRoutes),
     HomeModule,
-    LoginModule,
   ],
   providers: [Authentication, AppSettings],
   bootstrap: [AppComponent]
