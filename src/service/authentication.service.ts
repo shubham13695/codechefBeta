@@ -1,30 +1,74 @@
 import { Injectable} from '@angular/core';
-import { Http } from '@angular/http';
-import { HttpHeaders } from '@angular/common/http';
+import { HttpClient , HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
-import { Observable, of } from 'rxjs';
 
 @Injectable()
 export class Authentication {
 
-  constructor(private http: Http) {
-
+  httpOptions: any = { };
+  constructor(private http: HttpClient) {
   }
 
-  post(link) {
-    let data = {
-      data: 12
-    };
-    window.location.href ='https://api.codechef.com/oauth/authorize?response_type=code&client_id=983f0d084572c13255d514c32564de9f&state=xyz&redirect_uri=http://localhost:4200';
-    // window.location('https://api.codechef.com/oauth/authorize?response_type=code&client_id=983f0d084572c13255d514c32564de9f&state=xyz&redirect_uri=http://localhost:4200');
-    // header('Access-Control-Allow-Headers: Content-Type, x-xsrf-token, x_csrftoken');
-    return this.http.get('https://api.codechef.com/oauth/authorize?response_type=code&client_id=983f0d084572c13255d514c32564de9f&state=xyz').pipe(map((response: Response) => {
-    console.log(response);
-    }));
+  post(link, option, token, data= {} ) {
+    /*link = url
+      option = wheter request needed token or not
+      token = public or private
+      data = Data
+    */
+
+    token = 'Bearer ' + token;
+
+    switch (option) {
+      case 'private':
+        this.httpOptions = {
+          headers: new HttpHeaders({ 'Authorization': token, 'Access-Control-Allow-Origin': '*' })
+        };
+      break;
+
+      case 'public':
+        this.httpOptions = {
+          headers: new HttpHeaders({ 'Authorization': token, 'Access-Control-Allow-Origin': '*'})
+        };
+      break;
+
+      default:
+        this.httpOptions = {
+          headers: new HttpHeaders({ 'Access-Control-Allow-Origin': '*' })
+        };
+      break;
+    }
+      return this.http.post(link, data, this.httpOptions).pipe(map((response: Response) => {
+        return response.json(); }));
   }
-  // post(link, data): Observable<any> {
-  //   let headers = new HttpHeaders({'Content-type': 'application/json',Accept:'application/json','Access-Control-Allow-Origin': 'http://localhost:4200'});
-  //   return this.http.post(link, data).pipe(map((response: Response) => {
-  //     return response.json(); }));
-  // }
+
+  get(link, option, token) {
+    /*link = url
+      option = wheter request needed auth or not
+      token = public or private
+    */
+
+    token = 'Bearer ' + token;
+
+    switch (option) {
+      case 'public_key':
+        this.httpOptions = {
+          headers: new HttpHeaders({ 'Authorization': token, 'Access-Control-Allow-Origin': '*'})
+        };
+      break;
+
+      case 'client_key':
+        this.httpOptions = {
+          headers: new HttpHeaders({ 'Authorization': token, 'Access-Control-Allow-Origin': '*' })
+        };
+      break;
+
+      default:
+        this.httpOptions = {
+          headers: new HttpHeaders({ 'Access-Control-Allow-Origin': '*' })
+        };
+      break;
+    }
+      return this.http.get(link, this.httpOptions).pipe(map((response: Response) => {
+        return response.json(); }));
+  }
 }

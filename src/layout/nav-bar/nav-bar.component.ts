@@ -9,24 +9,11 @@ import {AppSettings} from '../../config/app.config';
 export class NavBarComponent  {
   form: any;
   constructor(private authentication: Authentication, private appsettings: AppSettings) {
-    // private http: HttpClient)
 
   }
 
   login() {
-    this.form = {
-      grant_type: 'client_credentials',
-      client_id: this.appsettings.client_id,
-      client_secret: this.appsettings.client_secret,
-      // response_type: 'code',
-      scope: 'public',
-      redirect_uri: 'http://localhost:4200',
-    };
     window.location.href = 'https://api.codechef.com/oauth/authorize?response_type=code&client_id=983f0d084572c13255d514c32564de9f&state=xyz&redirect_uri=http://localhost:4200';
-    // this.authentication.post(this.appsettings.clientCridential, this.form)
-    //   .subscribe((data) => {
-    //   console.log(data);
-    // });
   }
 
 

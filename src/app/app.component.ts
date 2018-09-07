@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AppSettings } from '../config/app.config';
 import { Authentication } from '../service/authentication.service';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -8,24 +9,23 @@ import { Authentication } from '../service/authentication.service';
 })
 export class AppComponent {
   title = 'betaApp';
-  form: any;
+  formData = new FormData();
+
+  constructor(private authentication: Authentication, private http: HttpClient, private appsettings: AppSettings) {
+
+    this.formData.append('grant_type', 'client_credentials');
+    this.formData.append('client_id', this.appsettings.client_id);
+    this.formData.append('client_secret', this.appsettings.client_secret);
+    this.formData.append('scope', 'public');
+    this.formData.append('redirect_uri', this.appsettings.redirect_uri);
 
 
-
-  constructor(private authentication: Authentication, private appsettings: AppSettings) {
-    this.form = {
-      grant_type: 'client_credentials',
-      client_id: this.appsettings.client_id,
-      client_secret: this.appsettings.client_secret,
-      scope: 'public',
-      redirect_uri: 'http://localhost:4200',
-    };
-
-    // if (!localStorage.getItem('public_key')) {
-    //   this.authentication.post(this.appsettings.clientCridential, this.form)
-    //     .subscribe((data) => {
-    //       localStorage.setItem('public_key', data.result.data.access_token);
-    //     });
-    // }
+    if (!localStorage.getItem('public_key')) {
+      this.http.post(this.appsettings.tokenUri, this.formData)
+        .subscribe((data: any) => {
+          localStorage.setItem('public_key', data.result.data.access_token);
+        
+        });
+    }
   }
 }
