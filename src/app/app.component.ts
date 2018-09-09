@@ -11,7 +11,7 @@ export class AppComponent {
   title = 'betaApp';
   formData = new FormData();
 
-  constructor(private authentication: Authentication, private http: HttpClient, private appsettings: AppSettings) {
+  constructor(private authentication: Authentication, private appsettings: AppSettings) {
 
     this.formData.append('grant_type', 'client_credentials');
     this.formData.append('client_id', this.appsettings.client_id);
@@ -21,10 +21,10 @@ export class AppComponent {
 
 
     if (!localStorage.getItem('public_key')) {
-      this.http.post(this.appsettings.tokenUri, this.formData)
+      this.authentication.post(this.appsettings.tokenUri, null, this.formData)
         .subscribe((data: any) => {
           localStorage.setItem('public_key', data.result.data.access_token);
-        
+            this.authentication.get(this.appsettings.codeChefApiBaseUrl, 'public');
         });
     }
   }

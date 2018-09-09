@@ -3,11 +3,10 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { LayoutComponent } from './layout.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
-import { CarouselComponent } from './carousel/carousel.component';
 
 @NgModule({
   imports:      [ BrowserModule],
-  declarations: [ LayoutComponent , NavBarComponent , CarouselComponent],
+  declarations: [ LayoutComponent , NavBarComponent ],
   exports: [ LayoutComponent, NavBarComponent ],
 })
 export class LayoutModule {  }
