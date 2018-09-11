@@ -13,10 +13,10 @@ import { UserService } from '../../service/user.service';
 export class HomeComponent implements OnInit {
   formData = new FormData();
   httpOptions: any = {};
+  contestsList: any = [];
 
   /* Animated Card */
   userData: any = null;
-
 
   constructor(private appsettings: AppSettings, private authentication: Authentication, private activatedroute: ActivatedRoute,
     private http: HttpClient, private userservice: UserService, private router: Router, private zone: NgZone) {
@@ -51,7 +51,18 @@ export class HomeComponent implements OnInit {
         this.userData = value;
       });
     });
-
+    // this.authentication.get(this.appsettings.codeChefApiBaseUrl + 'contests?status=present', 'private').subscribe((data: any) => {
+    //   if (data.result.data.code === 9001) {
+    //     localStorage.setItem('temp', JSON.stringify( data.result.data.content.contestList));
+    //     this.zone.run(() => {
+    //     this.contestsList = data.result.data.content.contestList;
+    //     console.log(this.contestsList);
+    //     });
+    //   } else {
+    //     console.log(data);
+    //   }
+    // });
+    this.contestsList = JSON.parse(localStorage.getItem('temp'));
     this.userservice.userData.next(JSON.parse(localStorage.getItem('userData')) !== null ?
     JSON.parse(localStorage.getItem('userData')) : null);
 

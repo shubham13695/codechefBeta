@@ -57,6 +57,7 @@ export class Authentication {
     switch (option) {
       case 'private':
         token = 'Bearer ' + localStorage.getItem('access_token');
+        console.log(token);
         this.httpOptions = {
           headers: new HttpHeaders({ 'Authorization': token, 'Access-Control-Allow-Origin': '*' })
         };

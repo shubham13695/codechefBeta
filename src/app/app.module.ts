@@ -9,6 +9,7 @@ import { AppRoutes } from './app.routing';
 
 import { HomeModule } from '../component/home/home.module';
 import { RouterModule } from '@angular/router';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import { RouterModule } from '@angular/router';
     HttpClientModule,
     RouterModule.forRoot(AppRoutes),
     HomeModule,
+    BrowserAnimationsModule,
   ],
   providers: [Authentication, AppSettings],
   bootstrap: [AppComponent]
