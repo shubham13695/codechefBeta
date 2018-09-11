@@ -9,24 +9,30 @@ import { UserService } from '../../service/user.service';
 })
 export class NavBarComponent {
   form: any;
-  constructor(private appsettings: AppSettings, private userservice: UserService) {
+  getUserName: any;
+  isUserLogging: boolean;
 
+  constructor(private userservice: UserService , private appsetting: AppSettings) {
+    this.userservice.userData.subscribe((data) => {
+      if (data !== null) {
+        this.getUserName = data.username;
+        this.isUserLogging = true;
+      } else {
+        this.isUserLogging = false;
+      }
+    });
   }
 
   login() {
-    this.userservice.login();
+    window.location.href = this.appsetting.codeChefAuthorizeApi +
+            '?response_type=code&client_id=' + this.appsetting.client_id + '&state=xyz&redirect_uri=' + this.appsetting.redirect_uri;
   }
 
   logout() {
-    this.userservice.logout();
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('refresh_token');
+    localStorage.removeItem('userData');
+    this.userservice.userData.next(null);
     window.location.reload();
-  }
-
-  get isUserLogging(): boolean {
-    return this.userservice.isUser();
-  }
-
-  get getUserName(): any {
-    return this.userservice.getUserName();
   }
 }
