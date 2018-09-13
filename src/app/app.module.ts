@@ -11,6 +11,7 @@ import { HomeModule } from '../component/home/home.module';
 import { PageNotFoundModule } from '../component/PageNotFoundComponent/PageNotFound.module';
 import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HomeModule,
     PageNotFoundModule,
     BrowserAnimationsModule,
+    NgxSpinnerModule
   ],
   providers: [Authentication, AppSettings],
   bootstrap: [AppComponent]

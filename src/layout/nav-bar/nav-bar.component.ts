@@ -32,6 +32,8 @@ export class NavBarComponent {
     localStorage.removeItem('access_token');
     localStorage.removeItem('refresh_token');
     localStorage.removeItem('userData');
+    localStorage.removeItem('temp');
+    localStorage.removeItem('scope');
     this.userservice.userData.next(null);
     window.location.reload();
   }
