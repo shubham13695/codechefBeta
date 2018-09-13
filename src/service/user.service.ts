@@ -18,7 +18,14 @@ export class UserService {
         return localStorage.getItem('access_token') !== null ? true : false;
     }
 
-
+    logout() {
+        localStorage.removeItem('access_token');
+        localStorage.removeItem('refresh_token');
+        localStorage.removeItem('userData');
+        localStorage.removeItem('temp');
+        localStorage.removeItem('scope');
+        window.location.reload();
+      }
     // getUserName() {
     //     return JSON.parse(localStorage.getItem('userData')) !== null ?
     //         JSON.parse(localStorage.getItem('userData')).username : null;
