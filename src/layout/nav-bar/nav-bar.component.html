@@ -7,16 +7,15 @@
         </div>
         <div class="col-xs-11 text-right menu-1">
           <ul>
-            <li class="active"><a href="index.html">Home</a></li>
-            <li *ngIf="!isUserLogging"(click) = "login()" class="btn-cta"><a href="#"><span>Login</span></a></li>
+            <li class="active"><a href="home">Home</a></li>
+            <li *ngIf="!isUserLogging"(click) = "login()" class="btn-cta active"><a href="#"><span>Login</span></a></li>
             <li class="has-dropdown">
               <img src="">
               <a href="pricing.html" *ngIf="isUserLogging">{{getUserName}}</a>
               <ul class="dropdown">
-                <li><a href="#">Web Design</a></li>
-                <li><a href="#">eCommerce</a></li>
-                <li><a href="#">Branding</a></li>
-                <li><a href="#">API</a></li>
+                <li><a href="#">Profile</a></li>
+                <li><a href="#">Sets</a></li>
+                <li><a href="#">To-Do List</a></li>
               </ul>
             </li>
             <li *ngIf="isUserLogging" (click) = "logout()" class="btn-cta"><a href="#"><span>Logout</span></a></li>

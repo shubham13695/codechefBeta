@@ -8,6 +8,7 @@ import { UserService } from '../../service/user.service';
 @Component({
   selector: 'app-home',
   templateUrl: 'home.component.html',
+  styleUrls: ['home.component.css']
 })
 export class HomeComponent implements OnInit {
   formData = new FormData();
@@ -19,6 +20,7 @@ export class HomeComponent implements OnInit {
 
   constructor(private appsettings: AppSettings, private authentication: Authentication, private activatedroute: ActivatedRoute,
     private http: HttpClient, private userservice: UserService, private router: Router, private zone: NgZone) {
+
     if (this.activatedroute.snapshot.queryParams['code'] !== undefined && localStorage.getItem('access_token') == null) {
       this.formData.append('grant_type', 'authorization_code');
       this.formData.append('code', this.activatedroute.snapshot.queryParams['code']);

@@ -8,6 +8,7 @@ import { AppSettings } from '../config/app.config';
 import { AppRoutes } from './app.routing';
 
 import { HomeModule } from '../component/home/home.module';
+import { PageNotFoundModule } from '../component/PageNotFoundComponent/PageNotFound.module';
 import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -21,6 +22,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HttpClientModule,
     RouterModule.forRoot(AppRoutes),
     HomeModule,
+    PageNotFoundModule,
     BrowserAnimationsModule,
   ],
   providers: [Authentication, AppSettings],
