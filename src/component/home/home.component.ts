@@ -5,7 +5,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { UserService } from '../../service/user.service';
 
-
 @Component({
   selector: 'app-home',
   templateUrl: 'home.component.html',
@@ -36,7 +35,6 @@ export class HomeComponent implements OnInit {
           this.userservice.userData.next(JSON.parse(localStorage.getItem('userData')));
           this.userservice.userData.subscribe((value) => {
             this.zone.run(() => {
-              this.userData = value;
               window.location.reload();
             });
           });
@@ -51,18 +49,18 @@ export class HomeComponent implements OnInit {
         this.userData = value;
       });
     });
-    // this.authentication.get(this.appsettings.codeChefApiBaseUrl + 'contests?status=present', 'private').subscribe((data: any) => {
-    //   if (data.result.data.code === 9001) {
-    //     localStorage.setItem('temp', JSON.stringify( data.result.data.content.contestList));
-    //     this.zone.run(() => {
-    //     this.contestsList = data.result.data.content.contestList;
-    //     console.log(this.contestsList);
-    //     });
-    //   } else {
-    //     console.log(data);
-    //   }
-    // });
-    this.contestsList = JSON.parse(localStorage.getItem('temp'));
+    if (localStorage.getItem('userData') !== null) {
+    this.authentication.get(this.appsettings.codeChefApiBaseUrl + 'contests?status=present', 'private').subscribe((data: any) => {
+      if (data.result.data.code === 9001) {
+        localStorage.setItem('temp', JSON.stringify( data.result.data.content.contestList));
+        this.zone.run(() => {
+        this.contestsList = data.result.data.content.contestList;
+        });
+      } else {
+      }
+    });
+    }
+    // this.contestsList = JSON.parse(localStorage.getItem('temp'));
     this.userservice.userData.next(JSON.parse(localStorage.getItem('userData')) !== null ?
     JSON.parse(localStorage.getItem('userData')) : null);
 

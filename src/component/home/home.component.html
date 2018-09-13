@@ -1,3 +1,4 @@
+
 <app-nav-bar></app-nav-bar>
 <header id="fh5co-header" class="fh5co-cover" role="banner" style='background-image: url("../../assets/images/img_bg_1.jpg")'
   data-stellar-background-ratio="0.5">
@@ -72,23 +73,26 @@
   <div class="container">
     <div class="row animate-box">
       <div class="col-md-6 col-md-offset-3 text-center fh5co-heading">
-        <h3>Current Contest</h3>
+        <h3 *ngIf="userData!==null">Current Contest</h3>
+        <div class="alert alert-warning" *ngIf="userData==null">
+          <strong>Warning!</strong> Please Login to See Ongoing Contest.
+        </div>
       </div>
     </div>
   </div>
-  <div class="fh5co-explore fh5co-explore1">
+  
+  <div class="fh5co-explore fh5co-explore1"  *ngIf="userData!==null">
     <div class="container">
       <div class="row">
         <div class="col-lg-4 col-md-4" *ngFor = "let contest of contestsList">
           <div class="fh5co-blog">
             <div class="blog-text">
               <h4  class="text-center"><a href="">{{contest.code}}</a></h4>
-              Start Time:<span class="posted_on">{{contest.startDate|date:'MMM-dd-yyyy HH:mm'}}</span><br>
-              End Time:<span class="posted_on">{{contest.endDate|date:'MMM-dd-yyyy HH:mm'}}</span>
+              Start Time:<span class="posted_on">{{contest.startDate|date:'MMM-dd-yyyy  h:mm:ss a'}}</span><br>
+              End Time:<span class="posted_on">{{contest.endDate|date:'MMM-dd-yyyy  h:mm:ss a'}}</span>
             </div>
           </div>
         </div>
-
       </div>
     </div>
   </div>
