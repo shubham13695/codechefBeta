@@ -21,7 +21,7 @@ export class HomeComponent implements OnInit {
 
   constructor(private appsettings: AppSettings, private authentication: Authentication, private activatedroute: ActivatedRoute,
     private http: HttpClient, private userservice: UserService, private zone: NgZone, private spinner: NgxSpinnerService) {
-
+      this.spinner.show();
     if (this.activatedroute.snapshot.queryParams['code'] !== undefined && localStorage.getItem('access_token') == null) {
       let formData;
       formData = new FormData();
@@ -67,35 +67,7 @@ export class HomeComponent implements OnInit {
         } else {
         }
       }, (error) => {
-
-        if (error.status === 401 && localStorage.getItem('access_token') !== null) {
-          let formData;
-          formData = new FormData();
-          formData.append('grant_type', 'refresh_token');
-          formData.append('refresh_token', localStorage.getItem('refresh_token'));
-          formData.append('client_id', this.appsettings.client_id);
-          formData.append('client_secret', this.appsettings.client_secret);
-          formData.append('redirect_uri', this.appsettings.redirect_uri);
-          this.authentication.post(this.appsettings.tokenUri, null, formData).subscribe((data: any) => {
-            localStorage.setItem('access_token', data.result.data.access_token);
-            localStorage.setItem('refresh_token', data.result.data.refresh_token);
-            localStorage.setItem('scope', data.result.data.scope);
-            this.authentication.get(this.appsettings.codeChefApiBaseUrl + 'users/me', 'private').subscribe((userdata: any) => {
-              this.spinner.hide();
-              localStorage.setItem('userData', JSON.stringify(userdata.result.data.content));
-              this.userservice.userData.next(JSON.parse(localStorage.getItem('userData')));
-              this.userservice.userData.subscribe((value) => {
-                this.zone.run(() => {
-                  window.location.reload();
-                });
-              });
-            });
-          });
-
-        } else {
-          this.userservice.logout();
-          this.userservice.userData.next(null);
-        }
+        this.userservice.refreshToken(error);
       });
 
     }
