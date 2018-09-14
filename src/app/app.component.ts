@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AppSettings } from '../config/app.config';
 import { Authentication } from '../service/authentication.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
