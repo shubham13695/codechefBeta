@@ -6,8 +6,7 @@ import { ContestComponent } from '../component/contest/contest.component';
 
 
 export const AppRoutes: Routes = [
-    { path: '', component: HomeComponent },
-    { path: 'home/src/OAuth2', component: HomeComponent },
+    { path: '', redirectTo: '/home', pathMatch: 'full'},
     { path: 'home', component: HomeComponent },
     { path: 'contest/:contestcode' , component: ContestComponent},
     { path: '**' , component: PageNotFoundComponent},

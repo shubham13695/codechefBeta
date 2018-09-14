@@ -1,5 +1,6 @@
-;(function () {
-	
+
+(function () {
+	console.log('first');
 	'use strict';
 
 	var isMobile = {
@@ -146,7 +147,7 @@
 	var dropdown = function() {
 
 		$('.has-dropdown').mouseenter(function(){
-
+			console.log("inside");
 			var $this = $(this);
 			$this
 				.find('.dropdown')

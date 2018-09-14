@@ -8,6 +8,7 @@ import { HttpModule } from '@angular/http';
 import { UserService } from '../../service/user.service';
 import { Authentication } from '../../service/authentication.service';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   imports: [LayoutModule, HttpModule, CommonModule, NgxSpinnerModule],

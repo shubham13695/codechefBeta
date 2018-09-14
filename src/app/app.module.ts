@@ -14,7 +14,6 @@ import { HomeModule } from '../component/home/home.module';
 
 import { PageNotFoundModule } from '../component/PageNotFoundComponent/PageNotFound.module';
 import { ContestModule } from '../component/contest/contest.module';
-import { LayoutModule } from '../layout/layout.module';
 
 
 
@@ -26,7 +25,6 @@ import { LayoutModule } from '../layout/layout.module';
     BrowserModule,
     HttpClientModule,
     RouterModule.forRoot(AppRoutes),
-    LayoutModule,
     HomeModule,
     PageNotFoundModule,
     BrowserAnimationsModule,
