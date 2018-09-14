@@ -2,7 +2,6 @@ import { Component, OnInit, NgZone } from '@angular/core';
 import { AppSettings } from '../../config/app.config';
 import { Authentication } from '../../service/authentication.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { UserService } from '../../service/user.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 
@@ -20,8 +19,9 @@ export class HomeComponent implements OnInit {
   userData: any = null;
 
   constructor(private appsettings: AppSettings, private authentication: Authentication, private activatedroute: ActivatedRoute,
-    private http: HttpClient, private userservice: UserService, private zone: NgZone, private spinner: NgxSpinnerService) {
-      this.spinner.show();
+    private userservice: UserService, private zone: NgZone, private spinner: NgxSpinnerService,
+    private router: Router) {
+    this.spinner.show();
     if (this.activatedroute.snapshot.queryParams['code'] !== undefined && localStorage.getItem('access_token') == null) {
       let formData;
       formData = new FormData();
@@ -43,8 +43,12 @@ export class HomeComponent implements OnInit {
             this.zone.run(() => {
               window.location.reload();
             });
+          }, (error) => {
+            this.spinner.hide();
           });
         });
+      }, (error) => {
+        this.spinner.hide();
       });
     }
   }
@@ -55,7 +59,7 @@ export class HomeComponent implements OnInit {
         this.userData = value;
       });
     });
-    if (localStorage.getItem('userData') !== null) {
+    if (localStorage.getItem('access_token') !== null) {
       this.spinner.show();
       this.authentication.get(this.appsettings.codeChefApiBaseUrl + 'contests?status=present', 'private').subscribe((data: any) => {
         this.spinner.hide();
@@ -67,19 +71,22 @@ export class HomeComponent implements OnInit {
         } else {
         }
       }, (error) => {
+        this.spinner.hide();
         this.userservice.refreshToken(error);
       });
 
+      this.spinner.show();
+
+      this.authentication.get(this.appsettings.codeChefApiBaseUrl + 'users/me', 'private').subscribe((userdata: any) => {
+        this.spinner.hide();
+        localStorage.setItem('userData', JSON.stringify(userdata.result.data.content));
+        this.userservice.userData.next(JSON.parse(localStorage.getItem('userData')));
+      }, (error) => {
+        this.spinner.hide();
+        this.userservice.refreshToken(error);
+      });
     }
-
-    this.userservice.userData.next(JSON.parse(localStorage.getItem('userData')) !== null ?
-      JSON.parse(localStorage.getItem('userData')) : null);
-
   }
-  get isUserLogging(): boolean {
-    return this.userservice.isUser();
-  }
-
   get getUserGlobalRanking(): any {
     return <Number>this.userData !== null ?
       this.userData.rankings.allContestRanking.global : null;
@@ -97,5 +104,9 @@ export class HomeComponent implements OnInit {
   get getUserRating(): any {
     return <Number>this.userData !== null ?
       this.userData.ratings.allContest : null;
+  }
+
+  goContestPage(contest) {
+    this.router.navigate(['contest/', contest.code]);
   }
 }

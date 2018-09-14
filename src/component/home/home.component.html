@@ -75,7 +75,7 @@
   <div class="container" *ngIf="userData!==null">
     <div class="row">
       <div class="pricing">
-        <div class="col-md-4" *ngFor="let contest of contestsList">
+        <div class="col-md-4" (click)="goContestPage(contest)"  *ngFor="let contest of contestsList">
           <div class="price-box contest-cards">
             <h4>{{contest.code}}</h4>
             <ul class="classes">
@@ -90,34 +90,3 @@
     </div>
   </div>
 </div>
-
-
-
-<!-- <div id="fh5co-explore" class="fh5co-bg-section">
-  <div class="container">
-    <div class="row animate-box">
-      <div class="col-md-6 col-md-offset-3 text-center fh5co-heading">
-        <h3 *ngIf="userData!==null">Current Contest</h3>
-        <div class="alert alert-warning" *ngIf="userData==null">
-          <strong> Please Login to See Ongoing Contest.</strong>
-        </div>
-      </div>
-    </div>
-  </div>
-  
-  <div class="fh5co-explore fh5co-explore1"  *ngIf="userData!==null">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-4 col-md-4" *ngFor = "let contest of contestsList">
-          <div class="fh5co-blog contest-cards">
-            <div class="blog-text">
-              <h4  class="text-center"><a href="">{{contest.code}}</a></h4>
-              Start Time:<span class="posted_on">{{contest.startDate|date:'MMM-dd-yyyy  h:mm:ss a'}}</span><br>
-              End Time:<span class="posted_on">{{contest.endDate|date:'MMM-dd-yyyy  h:mm:ss a'}}</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div> -->

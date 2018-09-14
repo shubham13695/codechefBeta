@@ -9,7 +9,7 @@ export const AppRoutes: Routes = [
     { path: '', component: HomeComponent },
     { path: 'home/src/OAuth2', component: HomeComponent },
     { path: 'home', component: HomeComponent },
-    { path: 'contest' , component: ContestComponent},
+    { path: 'contest/:contestcode' , component: ContestComponent},
     { path: '**' , component: PageNotFoundComponent},
   ];
 
