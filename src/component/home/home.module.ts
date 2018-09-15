@@ -13,7 +13,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   imports: [LayoutModule, HttpModule, CommonModule, NgxSpinnerModule],
   declarations: [ HomeComponent ],
-  exports: [HomeComponent],
   providers: [UserService, Authentication]
 })
 export class HomeModule {  }

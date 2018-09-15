@@ -14,7 +14,7 @@ import { HomeModule } from '../component/home/home.module';
 
 import { PageNotFoundModule } from '../component/PageNotFoundComponent/PageNotFound.module';
 import { ContestModule } from '../component/contest/contest.module';
-
+import { AboutUsModule } from '../component/aboutus/aboutus.module';
 
 
 @NgModule({
@@ -29,7 +29,8 @@ import { ContestModule } from '../component/contest/contest.module';
     PageNotFoundModule,
     BrowserAnimationsModule,
     NgxSpinnerModule,
-    ContestModule
+    ContestModule,
+    AboutUsModule
 
   ],
   providers: [Authentication, AppSettings],
