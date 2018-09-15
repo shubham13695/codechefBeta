@@ -4,6 +4,7 @@ import { Authentication } from '../../service/authentication.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../../service/user.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+declare var $: any;
 
 @Component({
   selector: 'app-home',
@@ -54,6 +55,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
+    $.getScript('../../assets/js/main.js');
     this.userservice.userData.subscribe((value) => {
       this.zone.run(() => {
         this.userData = value;

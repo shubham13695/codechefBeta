@@ -1,6 +1,6 @@
 
 (function () {
-	console.log('first');
+	console.log('start');
 	'use strict';
 
 	var isMobile = {
@@ -259,6 +259,5 @@
 		parallax();
 		testimonialCarousel();
 	});
-
 
 }());
