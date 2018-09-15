@@ -10,6 +10,7 @@ declare var $: any;
 @Component({
     selector: 'app-list-contest',
     templateUrl: 'contest.component.html',
+    styleUrls: ['contest.component.css'],
 })
 
 export class ContestComponent implements OnInit {
@@ -31,5 +32,8 @@ export class ContestComponent implements OnInit {
     }
     ngOnInit() {
         $.getScript('../../assets/js/main.js');
+    }
+    goProblemPage(problemCode) {
+        console.log(problemCode);
     }
 }

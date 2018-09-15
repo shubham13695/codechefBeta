@@ -23,6 +23,7 @@ export class HomeComponent implements OnInit {
     private userservice: UserService, private zone: NgZone, private spinner: NgxSpinnerService,
     private router: Router) {
     this.spinner.show();
+    console.log(this.activatedroute.snapshot.queryParams['code']);
     if (this.activatedroute.snapshot.queryParams['code'] !== undefined && localStorage.getItem('access_token') == null) {
       let formData;
       formData = new FormData();
@@ -52,6 +53,7 @@ export class HomeComponent implements OnInit {
         this.spinner.hide();
       });
     }
+    this.spinner.hide();
   }
 
   ngOnInit() {

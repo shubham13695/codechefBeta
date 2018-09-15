@@ -16,24 +16,39 @@
 </header>
 
 
-<!-- <div id="fh5co-pricing" class="fh5co-bg-section">
-  <h3 class="text-center">Problems List</h3>
-    <div class="row">
-      <div class="pricing">
-        <div class="col-md-4" *ngFor="let problem of contest.problemsList">
-          <div class="price-box contest-cards">
-            <h4>{{problem.problemCode}}</h4>
-            <ul class="classes">
-              <li class="text-left">accuracy</li>
-              <li class="color"><span class="posted_on">{{problem.accuracy}}</span></li>
-              <li class="text-left">successfulSubmissions</li>
-              <li class="color"><span class="posted_on">{{problem.successfulSubmissions}}</span></li>
-              <li class="text-left">submitEnd</li>
-              <li class="color"><span class="posted_on">{{problem.end|date:'MMM-dd-yyyy  h:mm:ss a'}}</span></li>
-            </ul>
-          </div>
+<div id="fh5co-counter" class="fh5co-counters">
+    <h3 class="text-center">Problem List</h3>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th class="text-center">Problem Code</th>
+                    <th class="text-center">Accuracy</th>
+                    <th class="text-center">Successfull Submission</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor = "let problem of contest.problemsList" class="contest-cards" (click)= "goProblemPage(problem.problemCode)">
+                    <td class="text-center">{{problem.problemCode}}</td>
+                    <td class="text-center">{{problem.accuracy}}</td>
+                    <td class="text-center">{{problem.successfulSubmissions}}</td>
+                  </tr>
+                </tbody>
+              </table>
         </div>
       </div>
-    </div>
-</div> -->
+  </div>
 
+  <!-- <div class="col-md-4" (click)="goContestPage(contest)"  *ngFor="let contest of contestsList">
+      <div class="price-box contest-cards">
+        <h4>{{contest.code}}</h4>
+        <ul class="classes">
+          <li class="text-left">Start Time</li>
+          <li class="color"><span class="posted_on">{{contest.startDate|date:'MMM-dd-yyyy  h:mm:ss a'}}</span></li>
+          <li class="text-left">End Time</li>
+          <li class="color"><span class="posted_on">{{contest.endDate|date:'MMM-dd-yyyy  h:mm:ss a'}}</span></li>
+        </ul>
+      </div>
+    </div> -->
