@@ -8,7 +8,8 @@ import { ContestComponent } from '../component/contest/contest.component';
 export const AppRoutes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full'},
     { path: 'home', component: HomeComponent },
-    { path: 'contest/:contestcode' , component: ContestComponent},
+    { path: 'contests/:contestcode' , component: ContestComponent},
+    { path: 'contests/:contestcode/problems/:problemcode' , component: ContestComponent},
     { path: '**' , component: PageNotFoundComponent},
   ];
 

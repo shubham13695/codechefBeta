@@ -111,6 +111,6 @@ export class HomeComponent implements OnInit {
   }
 
   goContestPage(contest) {
-    this.router.navigate(['contest/', contest.code]);
+    this.router.navigate(['contests/', contest.code]);
   }
 }
