@@ -23,7 +23,6 @@ export class ContestComponent implements OnInit {
         this.authentication.get(this.appSettings.codeChefApiBaseUrl + '/contests/' +
             this.activatedroute.snapshot.params['contestcode'], 'private').subscribe((data: any) => {
                 this.spinner.hide();
-            console.log(data);
                 this.contest = data.result.data.content;
             }, (error) => {
                 this.userService.refreshToken(error);
@@ -34,6 +33,11 @@ export class ContestComponent implements OnInit {
         $.getScript('../../assets/js/main.js');
     }
     goProblemPage(problemCode) {
-        console.log(problemCode);
+        this.authentication.get(this.appSettings.codeChefApiBaseUrl + '/contests/' + this.activatedroute.snapshot.params['contestcode'] +
+        '/problems/' + problemCode , 'private').subscribe((data) => {
+            console.log(data);
+        }, (error) => {
+            console.log(error);
+        } );
     }
 }
