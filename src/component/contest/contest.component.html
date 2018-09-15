@@ -1,5 +1,6 @@
 <app-layout></app-layout>
-<header id="fh5co-header" class="fh5co-cover fh5co-cover-sm" role="banner" [ngStyle]="{ 'background-image': 'url(' +contest.bannerFile + ')'}" data-stellar-background-ratio="0.9">
+<header id="fh5co-header" class="fh5co-cover fh5co-cover-sm" role="banner" [ngStyle]="{ 'background-image': 'url(' +contest.bannerFile + ')'}"
+  data-stellar-background-ratio="0.9">
   <div class="overlay"></div>
   <div class="container">
     <div class="row">
@@ -15,28 +16,29 @@
   </div>
 </header>
 
-
 <div id="fh5co-counter" class="fh5co-counters">
-    <h3 class="text-center">Problem List</h3>
-    <div class="container">
-      <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <table class="table table-striped">
-                <thead>
-                  <tr>
-                    <th class="text-center">Problem Code</th>
-                    <th class="text-center">Accuracy</th>
-                    <th class="text-center">Successfull Submission</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor = "let problem of contest.problemsList" class="contest-cards" (click)= "goProblemPage(problem.problemCode)">
-                    <td class="text-center">{{problem.problemCode}}</td>
-                    <td class="text-center">{{problem.accuracy}}</td>
-                    <td class="text-center">{{problem.successfulSubmissions}}</td>
-                  </tr>
-                </tbody>
-              </table>
-        </div>
+  <h3 class="text-center">Problem List</h3>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th class="text-center">Problem Code</th>
+              <th class="text-center">Accuracy</th>
+              <th class="text-center">Successfull Submission</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let problem of contest.problemsList" class="contest-cards" (click)="goProblemPage(problem.problemCode)">
+              <td class="text-center">{{problem.problemCode}}</td>
+              <td class="text-center">{{problem.accuracy}}</td>
+              <td class="text-center">{{problem.successfulSubmissions}}</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
+    </div>
   </div>
+</div>
+<app-footer></app-footer>
