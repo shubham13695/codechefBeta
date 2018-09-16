@@ -30,7 +30,6 @@ export class NavBarComponent {
         this.isUserLogging = false;
       }
     });
-    // console.log(this.router.url);
   }
 
   login() {

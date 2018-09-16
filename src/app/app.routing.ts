@@ -10,7 +10,7 @@ export const AppRoutes: Routes = [
     { path: 'home', component: HomeComponent },
     { path: 'contests/:contestcode' , component: ContestComponent},
     { path: 'contests/:contestcode/problems/:problemcode' , component: ContestComponent},
-    { path: 'about-us' , component: AboutUsComponent},
+    { path: 'contact-us' , component: AboutUsComponent},
     { path: '**' , component: PageNotFoundComponent},
   ];
 
