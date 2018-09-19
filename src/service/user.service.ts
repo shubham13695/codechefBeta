@@ -30,8 +30,7 @@ export class UserService {
 
 
   refreshToken(error) {
-
-    if (error.status === 401 && localStorage.getItem('access_token') !== null) {
+    if (error.status === 401 && (localStorage.getItem('refresh_token') !== null) && localStorage.getItem('refresh_token') !== '') {
       let formData;
       formData = new FormData();
       formData.append('grant_type', 'refresh_token');
@@ -39,6 +38,7 @@ export class UserService {
       formData.append('client_id', this.appsettings.client_id);
       formData.append('client_secret', this.appsettings.client_secret);
       formData.append('redirect_uri', this.appsettings.redirect_uri);
+      console.log('k');
       this.authentication.post(this.appsettings.tokenUri, null, formData).subscribe((data: any) => {
         localStorage.setItem('access_token', data.result.data.access_token);
         localStorage.setItem('refresh_token', data.result.data.refresh_token);
@@ -49,10 +49,15 @@ export class UserService {
           this.userData.subscribe((value) => {
               window.location.reload();
           });
-        });
+        }, (errors) => {
+          console.log(errors);
+          this.logout();
+          this.userData.next(null);
+        } );
       });
 
     } else {
+      console.log(error);
       this.logout();
       this.userData.next(null);
     }

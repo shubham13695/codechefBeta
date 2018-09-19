@@ -25,7 +25,6 @@ export class AppComponent {
         .subscribe((data: any) => {
           this.spinner.hide();
           localStorage.setItem('public_key', data.result.data.access_token);
-            this.authentication.get(this.appsettings.codeChefApiBaseUrl, 'public');
         });
     }
   }

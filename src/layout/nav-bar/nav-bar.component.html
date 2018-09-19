@@ -8,8 +8,8 @@
         <div class="col-xs-11 text-right menu-1">
           <ul>
             <li [ngClass]="{'active': currentUrl == 'home'}"><a [routerLink]="'/home'" class="pointer">Home</a></li>
-            <li [ngClass]="{'active': currentUrl == 'contest'}"><a href="" class="pointer">Leader Board</a></li>
-            <li [ngClass]="{'active': currentUrl == 'contact-us'}"><a [routerLink]="'/contact-us'" class="pointer">About Us</a></li>
+            <!-- <li [ngClass]="{'active': currentUrl == 'contest'}"><a href="" class="pointer">Leader Board</a></li> -->
+            <li [ngClass]="{'active': currentUrl == 'contact-us'}"><a [routerLink]="'/contact-us'" class="pointer">Contact Us</a></li>
             <li *ngIf="!isUserLogging" (click) = "login()" class="pointer btn-cta active"><a><span>Login</span></a></li>
             <li class="has-dropdown">
               <img src="">

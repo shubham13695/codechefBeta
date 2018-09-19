@@ -16,6 +16,8 @@ declare var $: any;
 export class ContestComponent implements OnInit {
     contest: any = {
         bannerFile: '../../assets/images/project-5.jpg',
+        startDate: new Date(),
+        endDate: new Date(),
     };
     constructor(private activatedroute: ActivatedRoute, private authentication: Authentication, private appSettings: AppSettings,
         private userService: UserService , private spinner: NgxSpinnerService) {
@@ -24,6 +26,7 @@ export class ContestComponent implements OnInit {
             this.activatedroute.snapshot.params['contestcode'], 'private').subscribe((data: any) => {
                 this.spinner.hide();
                 this.contest = data.result.data.content;
+                console.log(data.result);
             }, (error) => {
                 this.userService.refreshToken(error);
             });

@@ -47,10 +47,12 @@ export class HomeComponent implements OnInit {
             });
           }, (error) => {
             this.spinner.hide();
+            this.userservice.refreshToken(error);
           });
         });
       }, (error) => {
         this.spinner.hide();
+        this.userservice.refreshToken(error);
       });
     }
     this.spinner.hide();

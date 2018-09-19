@@ -8,7 +8,7 @@
         <div class="display-t">
           <div class="display-tc animate-box" data-animate-effect="fadeIn">
             <h1>{{contest.code}}</h1>
-            <h2>{{contest.name}}</h2>
+            <h2 ngIf="contest.name!==null">{{contest.name}} <br>Start:{{contest.startDate|date:'MMM-dd-yyyy  h:mm:ss a'}} &nbsp;&nbsp;End:{{contest.endDate|date:'MMM-dd-yyyy  h:mm:ss a'}}</h2>
           </div>
         </div>
       </div>
