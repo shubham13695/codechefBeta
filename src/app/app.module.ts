@@ -15,6 +15,8 @@ import { HomeModule } from '../component/home/home.module';
 import { PageNotFoundModule } from '../component/PageNotFoundComponent/PageNotFound.module';
 import { ContestModule } from '../component/contest/contest.module';
 import { AboutUsModule } from '../component/aboutus/aboutus.module';
+import { TestModule } from '../component/Test/test.module';
+import { ProblemModule } from '../component/problem/problem.module';
 
 
 @NgModule({
@@ -30,8 +32,9 @@ import { AboutUsModule } from '../component/aboutus/aboutus.module';
     BrowserAnimationsModule,
     NgxSpinnerModule,
     ContestModule,
-    AboutUsModule
-
+    TestModule,
+    AboutUsModule,
+    ProblemModule
   ],
   providers: [Authentication, AppSettings],
   bootstrap: [AppComponent]

@@ -4,6 +4,7 @@ import { Authentication } from '../../service/authentication.service';
 import { AppSettings } from '../../config/app.config';
 import { UserService } from '../../service/user.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { Router } from '@angular/router';
 
 declare var $: any;
 
@@ -20,9 +21,9 @@ export class ContestComponent implements OnInit {
         endDate: new Date(),
     };
     constructor(private activatedroute: ActivatedRoute, private authentication: Authentication, private appSettings: AppSettings,
-        private userService: UserService , private spinner: NgxSpinnerService) {
+        private userService: UserService , private spinner: NgxSpinnerService, private router: Router) {
         this.spinner.show();
-        this.authentication.get(this.appSettings.codeChefApiBaseUrl + '/contests/' +
+        this.authentication.get(this.appSettings.codeChefApiBaseUrl + 'contests/' +
             this.activatedroute.snapshot.params['contestcode'], 'private').subscribe((data: any) => {
                 this.spinner.hide();
                 this.contest = data.result.data.content;
@@ -36,11 +37,7 @@ export class ContestComponent implements OnInit {
         $.getScript('../../assets/js/main.js');
     }
     goProblemPage(problemCode) {
-        this.authentication.get(this.appSettings.codeChefApiBaseUrl + '/contests/' + this.activatedroute.snapshot.params['contestcode'] +
-        '/problems/' + problemCode , 'private').subscribe((data) => {
-            console.log(data);
-        }, (error) => {
-            console.log(error);
-        } );
+        console.log('inside');
+        this.router.navigateByUrl('contests/' + this.activatedroute.snapshot.params['contestcode'] + '/problems/' + problemCode);
     }
 }

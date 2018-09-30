@@ -44,6 +44,6 @@ export class NavBarComponent {
     localStorage.removeItem('temp');
     localStorage.removeItem('scope');
     this.userservice.userData.next(null);
-    window.location.reload();
+    // window.location.reload();
   }
 }
